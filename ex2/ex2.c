@@ -18,11 +18,16 @@ int main(void)
     exit(1);
   } else if (the_process == 0) {
     fp = fopen("text.txt", "r");
+    char buf[128];
+    fgets(buf, 128, fp);
+    printf("Buffer: %s\n", buf);
+
+    /* fprintf("hello line 21", fp); */
     printf("hello, child here (pid: %d) \n", (int) getpid());
 
   } else {
     /* this makes the parent process wait for the */ 
-    int wait_call = waitpid(the_process, NULL, 0);
+    waitpid(the_process, NULL, 0);
     fp = fopen("text.txt", "r");
     /* printf("the wait call => %d\n", wait_call); */
     printf("hello, parent here (pid: %d) of the child  process: %d\n", (int) getpid(), the_process);
