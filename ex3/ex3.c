@@ -10,28 +10,23 @@
 int main(void)
 {
 
-  /* char salutation[20]; */
-  int number;
+  /* int number; */
   int forking = fork();
   if (forking < 0) {
     fprintf(stderr, "fork failed\n");
     exit(1);
     /* this is a child b/c rc == 0 */
   } else if (forking == 0) {
-    int number = 99;
-     /* char salutation = "Hello"; */
-    printf(" %d from the child.", number);
+    /* int number = 99; */
+    char *hello = "Hello";
+    printf(" %s from the child.", hello);
 
   } else {
-    int number = 11;
+    /* int number = 11; */
+    char *goodbye = "Goodbye";
     waitpid(forking, NULL, 0);
-    /* char salutation = "Goodbye"; */
-    printf(" %d from the Parent.", number);
-
-
-
+    printf(" %s from the Parent.", goodbye);
   }
     // Your code here
-
     return 0;
 }
