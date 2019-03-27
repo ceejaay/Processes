@@ -16,6 +16,7 @@ int main(void)
   if (rc < 0) {
     fprintf(stderr, "fork failed\n");
     exit(1);
+    /* this is a child b/c rc == 0 */
   } else if (rc == 0) {
     x = 99;
     printf("Hello from the child. PID: %d\n", (int) getpid());
