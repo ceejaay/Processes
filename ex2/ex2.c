@@ -26,7 +26,8 @@ int main(void)
     fp = fopen("text.txt", "r");
 
     printf("hello, child here (pid: %d) \n", (int) getpid());
-    printf("File info %d \n", *fp);
+    fprintf(fp, "%s", "thing");
+    /* fprintf("File info %d \n", *fp); */
     fclose(fp);
 
   } else {
@@ -35,7 +36,9 @@ int main(void)
     /* fp = fopen("text.txt", "r"); */
     /* printf("the wait call => %d\n", wait_call); */
     fp = fopen("text.txt", "r");
-    printf("File info %d \n", *fp);
+    fprintf(fp, "%s", "thing");
+    /* fprintf("File info\n", *fp); */
+    /* fprintf(fp, "%s %s %s %d"); */
     printf("hello, parent here (pid: %d) of the child  process: %d\n", (int) getpid(), the_process); }
     fclose(fp);
 
