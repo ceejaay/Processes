@@ -16,7 +16,29 @@ char* msg3 = "hello world #3";
 
 int main(void)
 {
-    // Your code here
-    
+
+  char buffer[MSGSIZE];
+  int p[2];
+  printf("******This is the process %d*****\n", getpid());
+  int forking = fork();
+  if (forking < 0) {
+    fprintf(stderr, "fork failed\n");
+    exit(1);
+  } else if (forking == 0) {
+    printf("Child => %d\n", getpid());
+  } else {
+    printf("Parent => %d Child => %d\n", getpid(), forking);
+    /* int new_fork = fork(); */
+    waitpid(forking, NULL, 0);
+  }
+
+  /* if(new_fork < 0) { */
+  /*     fprintf(stderr, "fork failed\n"); */
+  /*     exit(1); */
+  /* } else if (new_fork == 0) { */
+  /*   printf("new fork => %d\n", getpid()); */
+  /* } else { */
+  /*   printf("Parent => %d Child => %d grand child=> %d\n", getpid(), forking, new_fork); */
+  /* } */
     return 0;
 }
