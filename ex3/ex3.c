@@ -9,7 +9,24 @@
 
 int main(void)
 {
-    // Your code here
 
+  /* int number; */
+  int forking = fork();
+  if (forking < 0) {
+    fprintf(stderr, "fork failed\n");
+    exit(1);
+    /* this is a child b/c rc == 0 */
+  } else if (forking == 0) {
+    /* int number = 99; */
+    char *hello = "Hello";
+    printf(" %s from the child. \n", hello);
+
+  } else {
+    /* int number = 11; */
+    char *goodbye = "Goodbye";
+    waitpid(forking, NULL, 0);
+    printf(" %s from the Parent. \n", goodbye);
+  }
+    // Your code here
     return 0;
 }
